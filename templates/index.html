@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Clinic Queue</title>
     <style>
@@ -8,6 +9,7 @@
             background: #f4f4f4;
             text-align: center;
         }
+
         .container {
             background: white;
             padding: 20px;
@@ -15,6 +17,7 @@
             width: 400px;
             border-radius: 10px;
         }
+
         a {
             margin: 10px;
             text-decoration: none;
@@ -23,28 +26,31 @@
             padding: 10px;
             border-radius: 5px;
         }
+
         li {
             text-align: left;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Clinic Queue</h1>
+    <div class="container">
+        <h1>Clinic Queue</h1>
 
-    <a href="/add">Add Patient</a>
-    <a href="/serve">Serve Patient</a>
+        <a href="/add">Add Patient</a>
+        <a href="/serve">Serve Patient</a>
 
-    <h2>Waiting List:</h2>
-    <ul>
-        {% for patient in patients %}
+        <h2>Waiting List:</h2>
+        <ul>
+            {% for patient in patients %}
             <li>{{ patient.get_details() }}</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Total Served Today: {{ total }}</h3>
-</div>
+            {% endfor %}
+        </ul>
+        <h3>Patients Waiting: {{ patients|length }}</h3>
+        <h3>Total Served Today: {{ total }}</h3>
+    </div>
 
 </body>
+
 </html>
