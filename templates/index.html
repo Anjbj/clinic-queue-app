@@ -1,34 +1,63 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Clinic Queue</title>
+    <title>Clinic System</title>
+
     <style>
         body {
-            font-family: Arial;
-            background: #f4f4f4;
-            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+            color: white;
         }
 
         .container {
-            background: white;
-            padding: 20px;
-            margin: 50px auto;
-            width: 400px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            text-align: center;
+            width: 350px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: block;
+            margin: 15px auto;
+            padding: 12px;
+            width: 80%;
+            border: none;
             border-radius: 10px;
-        }
-
-        a {
-            margin: 10px;
-            text-decoration: none;
+            background: #00c9a7;
             color: white;
-            background: #007BFF;
-            padding: 10px;
-            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
         }
 
-        li {
-            text-align: left;
+        .btn:hover {
+            background: #00b894;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -36,21 +65,11 @@
 <body>
 
     <div class="container">
-        <h1>Clinic Queue</h1>
+        <h1>🏥 Clinic System</h1>
 
-        <a href="/add">Add Patient</a>
-        <a href="/serve">Serve Patient</a>
-
-        <h2>Waiting List:</h2>
-        <ul>
-            {% for patient in patients %}
-            <li>{{ patient.get_details() }}</li>
-            {% endfor %}
-        </ul>
-        <h3>Patients Waiting: {{ patients|length }}</h3>
-        <h3>Total Served Today: {{ total }}</h3>
+        <a href="/add" class="btn">➕ Add Patient</a>
+        <a href="/serve" class="btn">🩺 Serve Patient</a>
     </div>
 
 </body>
-
 </html>
