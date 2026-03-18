@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clinic System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #00c9a7;
+            color: white;
+            cursor: pointer;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏥 Clinic System</h1>
+
+    <a href="/add"><button class="btn">➕ Add Patient</button></a>
+    <a href="/serve"><button class="btn">🩺 Serve Patient</button></a>
+
+    <h2>📊 Statistics</h2>
+    <div class="card">
+        <p><strong>Total Served:</strong> {{ total }}</p>
+        <p><strong>Waiting:</strong> {{ patients|length }}</p>
+    </div>
+
+    <h2>⏳ Waiting List</h2>
+
+    {% if patients %}
+        {% for patient in patients %}
+            <div class="card">
+                <p>{{ loop.index }}. {{ patient.name }}</p>
+                <a href="/delete/{{ loop.index0 }}">
+                    <button class="btn">❌ Remove</button>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No patients waiting.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
