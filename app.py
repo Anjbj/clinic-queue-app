@@ -28,16 +28,12 @@ def serve():
     return redirect('/')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
-    @app.route('/')
-def home():
-    return render_template('index.html', patients=clinic.patients)
-
-
 @app.route('/delete/<int:index>')
 def delete_patient(index):
     if 0 <= index < len(clinic.patients):
         clinic.patients.pop(index)
     return redirect('/')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

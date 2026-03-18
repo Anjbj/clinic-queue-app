@@ -1,75 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Clinic System</title>
-
     <style>
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+            font-family: Arial;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
             color: white;
+            text-align: center;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            text-align: center;
-            width: 350px;
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            margin-bottom: 30px;
+            width: 60%;
+            margin: auto;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
         }
 
         .btn {
-            display: block;
-            margin: 15px auto;
-            padding: 12px;
-            width: 80%;
+            padding: 10px 20px;
+            margin: 10px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             background: #00c9a7;
             color: white;
-            font-weight: bold;
-            text-decoration: none;
-            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .btn:hover {
-            background: #00b894;
-            transform: scale(1.05);
+        .card {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <h1>🏥 Clinic System</h1>
+<div class="container">
+    <h1>🏥 Clinic System</h1>
 
-        <a href="/add" class="btn">➕ Add Patient</a>
-        <a href="/serve" class="btn">🩺 Serve Patient</a>
+    <a href="/add"><button class="btn">➕ Add Patient</button></a>
+    <a href="/serve"><button class="btn">🩺 Serve Patient</button></a>
+
+    <h2>📊 Statistics</h2>
+    <div class="card">
+        <p><strong>Total Served:</strong> {{ total }}</p>
+        <p><strong>Waiting:</strong> {{ patients|length }}</p>
     </div>
+
+    <h2>⏳ Waiting List</h2>
+
+    {% if patients %}
+        {% for patient in patients %}
+            <div class="card">
+                <p>{{ loop.index }}. {{ patient.name }}</p>
+                <a href="/delete/{{ loop.index0 }}">
+                    <button class="btn">❌ Remove</button>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No patients waiting.</p>
+    {% endif %}
+
+</div>
 
 </body>
 </html>
